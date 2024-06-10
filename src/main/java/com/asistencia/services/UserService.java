@@ -10,4 +10,5 @@ public interface UserService {
     User getUserById(Long id);
     User updateUser(Long id, User user);
     boolean deleteUser(Long id);
+    boolean existsByCi(String ci);
 }

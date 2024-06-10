@@ -14,7 +14,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        // Lógica para crear un nuevo usuario
+        // Verificar si el ci ya existe
+        if (existsByCi(user.getCi())) {
+            throw new IllegalArgumentException("El CI ya está en uso.");
+        }
         return userRepository.save(user);
     }
 
@@ -32,7 +35,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(Long id, User user) {
-        // Lógica para actualizar un usuario existente
+        // Verificar si el ci ya existe para otro usuario
+        User existingUser = userRepository.findById(id).orElse(null);
+        if (existingUser != null && !existingUser.getCi().equals(user.getCi()) && existsByCi(user.getCi())) {
+            throw new IllegalArgumentException("El CI ya está en uso.");
+        }
         if (userRepository.existsById(id)) {
             user.setId(id);
             return userRepository.save(user);
@@ -50,5 +57,10 @@ public class UserServiceImpl implements UserService {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public boolean existsByCi(String ci) {
+        return userRepository.existsByCi(ci);
     }
 }

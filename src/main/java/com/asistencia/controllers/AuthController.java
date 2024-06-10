@@ -44,6 +44,10 @@ public class AuthController {
         createdUser.setPassword(passwordEncoder.encode(user.getPassword()));
         createdUser.setEmail(user.getEmail());
         createdUser.setName(user.getName());
+        createdUser.setRol(user.getRol());
+        createdUser.setCi(user.getCi());
+        createdUser.setDireccion(user.getDireccion());
+
 
         User savedUser = usuarioRepository.save(createdUser);
         Authentication authentication=new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
