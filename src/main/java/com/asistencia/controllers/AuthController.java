@@ -4,6 +4,7 @@ import com.asistencia.config.JwtProvider;
 import com.asistencia.repositories.UserRepository;
 import com.asistencia.requests.LoginRequest;
 import com.asistencia.responses.AuthResponse;
+import com.asistencia.services.TokenBlacklistService;
 import com.asistencia.services.CustomerUserDetailsImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 
 
 @RestController
@@ -96,4 +99,20 @@ public class AuthController {
 //        }
 //        return ResponseEntity.ok("Logout successful");
 //    }
+
+    @Autowired
+    private TokenBlacklistService tokenBlacklistService;
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            // Obtener la fecha de expiración del token
+            LocalDateTime expirationDate = JwtProvider.getExpirationDateFromToken(token);
+            // Agregar el token a la lista de tokens invalidados
+            tokenBlacklistService.addTokenToBlacklist(token, expirationDate);
+        }
+        return ResponseEntity.ok("Logout successful");
+    }
 }

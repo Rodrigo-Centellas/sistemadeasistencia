@@ -1,5 +1,12 @@
 package com.asistencia.config;
 
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -36,4 +43,15 @@ public class JwtProvider {
 //        Claims claims= Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
 //        return String.valueOf(claims.get("authorities"));
 //    }
+
+    public static LocalDateTime getExpirationDateFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+        Date expirationDate = claims.getExpiration();
+        return expirationDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
 }

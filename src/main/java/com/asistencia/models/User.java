@@ -1,4 +1,5 @@
 package com.asistencia.models;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -16,6 +17,10 @@ public class User {
     private String rol;
     private String ci;
     private String direccion;
+
+    //relacion Con clase
+    @OneToMany(mappedBy = "user")
+    private Set<Clase> clases;
 
 
 }
