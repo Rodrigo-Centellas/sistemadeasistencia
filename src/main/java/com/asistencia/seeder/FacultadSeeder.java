@@ -26,8 +26,6 @@ public class FacultadSeeder implements CommandLineRunner {
         seedFacultades();
     }
 
-
-
     private void seedFacultades() {
         if (facultadRepository.count() == 0) {
             Facultad facultad1 = new Facultad();

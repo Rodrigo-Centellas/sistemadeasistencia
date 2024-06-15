@@ -12,5 +12,6 @@ public class Aula {
     private Long id;
     private String nombre;
     private Integer capacidad;
-    private String ubicacion;
+    private double latitud;
+    private double longitud;
 }

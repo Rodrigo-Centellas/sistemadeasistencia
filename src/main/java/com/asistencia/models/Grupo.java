@@ -12,7 +12,4 @@ public class Grupo {
     private Long id;
     private String nombre;
 
-    @ManyToOne
-    @JoinColumn(name = "carrera_id")
-    private Carrera carrera;
 }
