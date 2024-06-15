@@ -6,6 +6,7 @@ import com.asistencia.requests.LoginRequest;
 import com.asistencia.responses.AuthResponse;
 import com.asistencia.services.TokenBlacklistService;
 import com.asistencia.services.CustomerUserDetailsImpl;
+import com.asistencia.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,6 +62,7 @@ public class AuthController {
         res.setMessage("signup successful");
         res.setJtw(jwt);
 
+
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
@@ -72,9 +74,11 @@ public class AuthController {
         Authentication authentication=authenticate(username,password);
         String jwt= JwtProvider.generateToken(authentication);
 
+
         AuthResponse res = new AuthResponse();
         res.setMessage("signing successful");
         res.setJtw(jwt);
+        res.setEmail(username); // agrega el email
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
