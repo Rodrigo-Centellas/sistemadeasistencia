@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/grupos")
+@RequestMapping("/api/grupos")
 public class GrupoController {
 
     @Autowired
