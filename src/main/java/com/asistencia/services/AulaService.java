@@ -35,8 +35,6 @@ public class AulaService {
             Aula aula = aulaOptional.get();
             aula.setNombre(aulaDetails.getNombre());
             aula.setCapacidad(aulaDetails.getCapacidad());
-            aula.setLatitud(aulaDetails.getLatitud());
-            aula.setLongitud(aulaDetails.getLongitud());
             return aulaRepository.save(aula);
         } else {
             // Manejar el caso en el que el aula no existe

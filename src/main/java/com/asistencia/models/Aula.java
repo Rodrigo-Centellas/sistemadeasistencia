@@ -12,6 +12,9 @@ public class Aula {
     private Long id;
     private String nombre;
     private Integer capacidad;
-    private double latitud;
-    private double longitud;
+
+
+    @ManyToOne
+    @JoinColumn(name = "modulo_id")
+    private Modulo modulo;
 }
