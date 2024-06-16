@@ -2,12 +2,15 @@ package com.asistencia.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "horarios")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Horario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,4 +18,7 @@ public class Horario {
     private LocalTime horarioInicio;
     private LocalTime  horarioFin;
     private String dia;
+
+    @OneToMany(mappedBy = "horario")
+    private Set<HorarioClase> horarioClases;
 }

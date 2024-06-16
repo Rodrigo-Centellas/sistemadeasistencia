@@ -2,6 +2,8 @@ package com.asistencia.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Set;
 
 @Entity
@@ -15,8 +17,18 @@ public class Clase {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"clases"})
     private User user;
 
-    @OneToMany(mappedBy = "clase")
-    private Set<HorarioClase> horarioClases;
+    @ManyToOne
+    @JoinColumn(name = "grupo_id")
+    @JsonIgnoreProperties({"clases"})
+    private Grupo grupo;
+
+    @ManyToOne
+    @JoinColumn(name = "materia_id")
+    @JsonIgnoreProperties({"clases"})
+    private Materia materia;
+
+
 }

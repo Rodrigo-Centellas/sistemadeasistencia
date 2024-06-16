@@ -1,12 +1,15 @@
 package com.asistencia.models;
-import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +21,6 @@ public class User {
     private String ci;
     private String direccion;
 
-    //relacion Con clase
     @OneToMany(mappedBy = "user")
     private Set<Clase> clases;
-
-
 }
