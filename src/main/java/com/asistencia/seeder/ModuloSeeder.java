@@ -1,12 +1,16 @@
 package com.asistencia.seeder;
 
 import com.asistencia.models.Aula;
+import com.asistencia.models.Horario;
 import com.asistencia.models.Modulo;
 import com.asistencia.repositories.AulaRepository;
+import com.asistencia.repositories.HorarioRepository;
 import com.asistencia.repositories.ModuloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalTime;
 
 @Component
 public class ModuloSeeder implements CommandLineRunner {
@@ -14,6 +18,8 @@ public class ModuloSeeder implements CommandLineRunner {
     private ModuloRepository moduloRepository;
     @Autowired
     private AulaRepository aulaRepository;
+    @Autowired
+    private HorarioRepository horarioRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -45,23 +51,60 @@ public class ModuloSeeder implements CommandLineRunner {
                 aula.setModulo(modulo1);
                 aulaRepository.save(aula);
 
-                aula = new Aula();
-                aula.setNombre("11");
-                aula.setCapacidad(45);
-                aula.setModulo(modulo2);
-                aulaRepository.save(aula);
+                Aula aula1 = new Aula();
+                aula1.setNombre("11");
+                aula1.setCapacidad(45);
+                aula1.setModulo(modulo2);
+                aulaRepository.save(aula1);
 
-                aula = new Aula();
-                aula.setNombre("12");
-                aula.setCapacidad(30);
-                aula.setModulo(modulo3);
-                aulaRepository.save(aula);
+                Aula aula2 = new Aula();
+                aula2.setNombre("12");
+                aula2.setCapacidad(30);
+                aula2.setModulo(modulo3);
+                aulaRepository.save(aula2);
 
-                aula = new Aula();
-                aula.setNombre("13");
-                aula.setCapacidad(60);
-                aula.setModulo(modulo4);
-                aulaRepository.save(aula);
+                Aula aula3 = new Aula();
+                aula3.setNombre("13");
+                aula3.setCapacidad(60);
+                aula3.setModulo(modulo4);
+                aulaRepository.save(aula3);
+
+                if (horarioRepository.count() == 0) {
+                    Horario horario = new Horario();
+                    horario.setDia("MONDAY");
+                    horario.setHorarioInicio(LocalTime.parse("07:00"));
+                    horario.setHorarioFin(LocalTime.parse("08:30"));
+                    horario.setAula(aula);
+                    horarioRepository.save(horario);
+
+                    horario = new Horario();
+                    horario.setDia("TUESDAY");
+                    horario.setHorarioInicio(LocalTime.parse("07:00"));
+                    horario.setHorarioFin(LocalTime.parse("09:15"));
+                    horario.setAula(aula);
+                    horarioRepository.save(horario);
+
+                    horario = new Horario();
+                    horario.setDia("WEDNESDAY");
+                    horario.setHorarioInicio(LocalTime.parse("08:30"));
+                    horario.setHorarioFin(LocalTime.parse("10:00"));
+                    horario.setAula(aula1);
+                    horarioRepository.save(horario);
+
+                    horario = new Horario();
+                    horario.setDia("THURSDAY");
+                    horario.setHorarioInicio(LocalTime.parse("09:15"));
+                    horario.setHorarioFin(LocalTime.parse("11:30"));
+                    horario.setAula(aula2);
+                    horarioRepository.save(horario);
+
+                    horario = new Horario();
+                    horario.setDia("FRIDAY");
+                    horario.setHorarioInicio(LocalTime.parse("10:00"));
+                    horario.setHorarioFin(LocalTime.parse("11:30"));
+                    horario.setAula(aula3);
+                    horarioRepository.save(horario);
+                }
             }
         }
     }

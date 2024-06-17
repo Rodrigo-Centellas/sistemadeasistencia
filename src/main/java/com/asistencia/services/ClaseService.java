@@ -1,7 +1,9 @@
 package com.asistencia.services;
 
 import com.asistencia.models.Clase;
+import com.asistencia.models.Materia;
 import com.asistencia.repositories.ClaseRepository;
+import com.asistencia.repositories.MateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,10 @@ public class ClaseService {
 
     @Autowired
     private ClaseRepository claseRepository;
+    private MateriaRepository materiaRepository;
 
+
+    public Materia getMateria(Long id){return getClaseById(id).get().getMateria();}
     public List<Clase> getAllClases() {
         return claseRepository.findAll();
     }

@@ -19,6 +19,10 @@ public class Horario {
     private LocalTime  horarioFin;
     private String dia;
 
+    @ManyToOne
+    @JoinColumn(name = "aula_id")
+    private Aula aula;
+
     @OneToMany(mappedBy = "horario")
     private Set<HorarioClase> horarioClases;
 }
