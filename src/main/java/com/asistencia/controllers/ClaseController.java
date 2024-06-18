@@ -86,6 +86,7 @@ public class ClaseController {
                     asistencia.setUser(clase.get().getUser());
                     asistencia.setHorario(horario);
                     asistencia.setTipo("falta");
+                    asistencia.setMinutos_atraso(0);
                     asistencia.setClase(clase.get());
                     asistenciaRepository.save(asistencia);
                     minutos=minutos-((int)(Duration.between(horario.getHorarioInicio(), horario.getHorarioFin())).toMinutes());

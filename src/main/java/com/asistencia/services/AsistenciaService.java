@@ -39,4 +39,9 @@ public class AsistenciaService {
             return false;
         }
     }
+
+    public boolean isPresente(Long id) {
+        Asistencia asistencia = asistenciaRepository.findById(id).get();
+        return asistencia.getTipo()=="presente";
+    }
 }

@@ -3,9 +3,11 @@ package com.asistencia.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+
 
 @Entity
 @Table(name = "asistencias")
