@@ -1,9 +1,5 @@
-FROM maven:maven:3.9.5-openjdk-21 AS build
-COPY . .
-RUN mvn clean package -DskipTest
+FROM amazoncorretto:21-alpine-jdk
 
-FROM openjdk:21-jdk-slim
-COPY  --FROM=build /target/demo-0.0.1-SNAPSHOT demo.jar
+COPY target/sistemadeasistencia-0.0.1-SNAPSHOT.jar app.jar
 
-EXPOSE 8080
-ENTRYPOINT ["java","-java","demo.jar"]
+ENTRYPOINT ["java" , "-jar" , "/app.jar"]
