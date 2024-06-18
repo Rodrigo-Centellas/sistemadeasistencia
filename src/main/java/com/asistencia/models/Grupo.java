@@ -18,4 +18,12 @@ public class Grupo {
 
     @OneToMany(mappedBy = "grupo")
     private Set<Clase> clases;
+
+
+
+    //para reporte
+
+    public Long getId() {
+        return id;
+    }
 }

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface HorarioClaseRepository extends JpaRepository<HorarioClase, Long> {
     List<HorarioClase> findByHorarioId(Long horarioId);
+    List<HorarioClase> findByClaseUserId(Long userId);
 }

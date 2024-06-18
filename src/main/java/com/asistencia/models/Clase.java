@@ -31,4 +31,10 @@ public class Clase {
     private Materia materia;
 
 
+    //para reporte
+
+    @OneToMany(mappedBy = "clase", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"clase"})
+    private Set<HorarioClase> horarioClases;
+
 }

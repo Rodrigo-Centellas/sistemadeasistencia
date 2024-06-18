@@ -20,6 +20,7 @@ public class HorarioSeeder implements CommandLineRunner {
     }
 
     private void seedHorarios() {
+<<<<<<< Updated upstream
 //        if (horarioRepository.count() == 0) {
 //            Horario horario = new Horario();
 //            horario.setDia("Lunes");
@@ -51,5 +52,44 @@ public class HorarioSeeder implements CommandLineRunner {
 //            horario.setHorarioFin(LocalTime.parse("11:30"));
 //            horarioRepository.save(horario);
 //        }
+=======
+        if (horarioRepository.count() == 0) {
+            Horario horario = new Horario();
+            horario.setDia("Lunes");
+            horario.setHorarioInicio(LocalTime.parse("07:00"));
+            horario.setHorarioFin(LocalTime.parse("08:30"));
+            horarioRepository.save(horario);
+
+            horario = new Horario();
+            horario.setDia("Martes");
+            horario.setHorarioInicio(LocalTime.parse("07:00"));
+            horario.setHorarioFin(LocalTime.parse("09:15"));
+            horarioRepository.save(horario);
+
+            horario = new Horario();
+            horario.setDia("Miercoles");
+            horario.setHorarioInicio(LocalTime.parse("08:30"));
+            horario.setHorarioFin(LocalTime.parse("10:00"));
+            horarioRepository.save(horario);
+
+            horario = new Horario();
+            horario.setDia("Jueves");
+            horario.setHorarioInicio(LocalTime.parse("09:15"));
+            horario.setHorarioFin(LocalTime.parse("11:30"));
+            horarioRepository.save(horario);
+
+            horario = new Horario();
+            horario.setDia("Viernes");
+            horario.setHorarioInicio(LocalTime.parse("10:00"));
+            horario.setHorarioFin(LocalTime.parse("11:30"));
+            horarioRepository.save(horario);
+
+            horario = new Horario();
+            horario.setDia("Lunes");
+            horario.setHorarioInicio(LocalTime.parse("08:00"));
+            horario.setHorarioFin(LocalTime.parse("11:30"));
+            horarioRepository.save(horario);
+        }
+>>>>>>> Stashed changes
     }
 }

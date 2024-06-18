@@ -21,4 +21,14 @@ public class Materia {
 
     @OneToMany(mappedBy = "materia")
     private Set<Clase> clases;
+
+    //para reporte
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 }

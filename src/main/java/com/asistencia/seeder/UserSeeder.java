@@ -65,6 +65,15 @@ public class UserSeeder implements CommandLineRunner {
             u.setCi("11111113");
             u.setDireccion("Direccion usuario4");
             userRepository.save(u);
+
+            u = new User();
+            u.setName("Rodrigo");
+            u.setEmail("rodrigo@gmail.com");
+            u.setPassword(passwordEncoder.encode("123"));
+            u.setRol("administrador");
+            u.setCi("1111145");
+            u.setDireccion("Direccion usuario4");
+            userRepository.save(u);
         }
     }
 }

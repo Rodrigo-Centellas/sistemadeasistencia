@@ -23,4 +23,18 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Clase> clases;
+
+
+
+
+
+    //para reportes
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
