@@ -28,7 +28,8 @@ public class AppConfig {
                 .authorizeHttpRequests(Authorize->Authorize.requestMatchers("/api/**").authenticated()
                         .anyRequest().permitAll())
                 .addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
-                .csrf(csrf->csrf.disable());
+                .csrf(csrf->csrf.disable())
+                .cors(cors->cors.configurationSource(corsConfigurationSource()));
         return http.build();
     }
 
@@ -42,8 +43,11 @@ public class AppConfig {
                         "http://localhost:5173",
                         "http://localhost:4200",
                         "http://10.0.2.2:8081",
-                        "https://jose-test.site"
-
+                        "https://jose-test.site",
+                        "https://177.222.36.57:4200",
+                        "https://198.54.126.100:4200",
+                        "https://198.54.126.100",
+                        "https://177.222.36.57"
                 ));
                 cfg.setAllowedMethods(Collections.singletonList("*"));
                 cfg.setAllowCredentials(true);
