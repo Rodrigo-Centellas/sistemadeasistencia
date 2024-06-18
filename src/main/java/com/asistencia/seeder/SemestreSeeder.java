@@ -22,7 +22,7 @@ public class SemestreSeeder implements CommandLineRunner {
             semestre.setSemestre(1);
             semestre.setGestion(2024);
             semestreRepository.save(semestre);
-
+//
             semestre=new Semestre();
             semestre.setSemestre(2);
             semestre.setGestion(2024);
